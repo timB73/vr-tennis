@@ -14,7 +14,7 @@ public class SpawnBall : MonoBehaviour
         SpawnReference.action.started += SpawnTennisBall;
         for (int i = 0; i < 10; i++)
         {
-            Instantiate(BallPrefab, Spawnpoint, true);
+            Instantiate(BallPrefab, Spawnpoint, false);
 
         }
     }
@@ -26,11 +26,7 @@ public class SpawnBall : MonoBehaviour
 
     void SpawnTennisBall(InputAction.CallbackContext context)
     {
-        if (context.performed)
-        {
-            Rigidbody ball = Instantiate(BallPrefab, Spawnpoint, true);
-        }
 
-
+        Rigidbody ball = Instantiate(BallPrefab, Spawnpoint, false);
     }
 }
