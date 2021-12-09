@@ -7,6 +7,8 @@ public class SpawnBall : MonoBehaviour
 {
     public InputActionReference SpawnReference = null;
     public Rigidbody BallPrefab;
+
+    public GameObject holdingController;
     public Transform Spawnpoint;
 
     private void Awake()
@@ -14,7 +16,7 @@ public class SpawnBall : MonoBehaviour
         SpawnReference.action.started += SpawnTennisBall;
         for (int i = 0; i < 10; i++)
         {
-            Instantiate(BallPrefab, Spawnpoint, false);
+            // Instantiate(BallPrefab, Spawnpoint, false);
 
         }
     }
@@ -26,7 +28,8 @@ public class SpawnBall : MonoBehaviour
 
     void SpawnTennisBall(InputAction.CallbackContext context)
     {
+        // Transform spawnTransform = holdingController.transform;
 
-        Rigidbody ball = Instantiate(BallPrefab, Spawnpoint, false);
+        Rigidbody ball = Instantiate(BallPrefab, Spawnpoint.position, Spawnpoint.rotation);
     }
 }
