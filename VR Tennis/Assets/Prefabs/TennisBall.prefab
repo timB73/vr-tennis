@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1218227031608072271}
   - component: {fileID: 1218227031608072259}
   - component: {fileID: 1218227031608072264}
+  - component: {fileID: 1121366528884381019}
   m_Layer: 0
   m_Name: TennisBall
   m_TagString: Untagged
@@ -228,3 +229,18 @@ MonoBehaviour:
   m_ForceGravityOnDetach: 0
   m_RetainTransformParent: 1
   m_AttachPointCompatibilityMode: 0
+--- !u!114 &1121366528884381019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1218227031608072265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89aa052e2558048cc942b7681b3a5072, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lastHit: {fileID: 0}
+  collision: {x: 0, y: 0, z: 0}
+  lastPosition: {x: 0, y: 0, z: 0}
