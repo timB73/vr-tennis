@@ -16,8 +16,8 @@ GameObject:
   - component: {fileID: 1218227031608072264}
   - component: {fileID: 1121366528884381019}
   m_Layer: 0
-  m_Name: TennisBall
-  m_TagString: Untagged
+  m_Name: Ball
+  m_TagString: Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -106,14 +106,14 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1218227031608072265}
   serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
+  m_Mass: 0.057
+  m_Drag: 0.82
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 1
+  m_CollisionDetection: 2
 --- !u!114 &1218227031608072264
 MonoBehaviour:
   m_ObjectHideFlags: 0

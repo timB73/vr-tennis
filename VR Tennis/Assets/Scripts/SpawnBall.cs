@@ -14,12 +14,6 @@ public class SpawnBall : MonoBehaviour
     private void Awake()
     {
         SpawnReference.action.started += SpawnTennisBall;
-        Debug.Log("SpawnBall script Awake()");
-        for (int i = 0; i < 10; i++)
-        {
-            // Instantiate(BallPrefab, Spawnpoint, false);
-
-        }
     }
 
     private void OnDestroy()
@@ -32,6 +26,15 @@ public class SpawnBall : MonoBehaviour
         // Transform spawnTransform = holdingController.transform;
         Debug.Log("Spawned tennis ball");
 
+        GameObject[] balls = GameObject.FindGameObjectsWithTag("Ball Clone");
+
+
+        foreach (GameObject b in balls)
+        {
+            GameObject.Destroy(b);
+        }
+
         Rigidbody ball = Instantiate(BallPrefab, Spawnpoint.position, Spawnpoint.rotation);
+        ball.tag = "Ball Clone";
     }
 }
