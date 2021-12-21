@@ -8,7 +8,6 @@ public class SpawnBall : MonoBehaviour
     public InputActionReference SpawnReference = null;
     public Rigidbody BallPrefab;
 
-    public GameObject holdingController;
     public Transform Spawnpoint;
 
     private void Awake()
