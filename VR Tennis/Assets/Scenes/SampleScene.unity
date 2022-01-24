@@ -180,6 +180,27 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 822429645}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &316080947 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1218227031608072265, guid: 3334b50ced28943fdbb97535ae374762,
+    type: 3}
+  m_PrefabInstance: {fileID: 1218227031823518491}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &316080954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 316080947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9e8f73974335491fbc86eb42e043645, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxRotation: 1000
+  accelerationFactor: 10
+  decellerationFactor: 2
 --- !u!1001 &332970428
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1562,7 +1583,7 @@ GameObject:
   - component: {fileID: 1152204772}
   - component: {fileID: 1152204773}
   m_Layer: 0
-  m_Name: SpawnBall
+  m_Name: BallControls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1967,6 +1988,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ActionAssets:
   - {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  - {fileID: -944628639613478452, guid: da2b439d1a2de5c46a4f428f8cf4fe19, type: 3}
 --- !u!1 &1728657555
 GameObject:
   m_ObjectHideFlags: 0
@@ -2648,12 +2670,12 @@ PrefabInstance:
     - target: {fileID: 1218227031608072268, guid: 3334b50ced28943fdbb97535ae374762,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.507
+      value: 1.978
       objectReference: {fileID: 0}
     - target: {fileID: 1218227031608072268, guid: 3334b50ced28943fdbb97535ae374762,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.48
+      value: 1.26
       objectReference: {fileID: 0}
     - target: {fileID: 1218227031608072268, guid: 3334b50ced28943fdbb97535ae374762,
         type: 3}
@@ -2695,6 +2717,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1218227031608072270, guid: 3334b50ced28943fdbb97535ae374762,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9bee807c1efc24f40b567b38fd30529e, type: 2}
     - target: {fileID: 1218227031608072271, guid: 3334b50ced28943fdbb97535ae374762,
         type: 3}
       propertyPath: m_Radius
