@@ -18,6 +18,8 @@ public class BallController : MonoBehaviour
 
     private Vector3 m_EulerAngleVelocity;
 
+    private bool jump;
+
     void Update()
     {
         if (Keyboard.current.wKey.isPressed && topspinRotation < maxRotation)
@@ -38,6 +40,15 @@ public class BallController : MonoBehaviour
         {
             backspinRotation -= decellerationFactor;
         }
+
+        if (Keyboard.current.spaceKey.isPressed)
+        {
+            jump = true;
+        }
+        else
+        {
+            jump = false;
+        }
     }
 
     // Start is called before the first frame update
@@ -52,9 +63,20 @@ public class BallController : MonoBehaviour
 
         Debug.Log("X rotation: topspin (" + topspinRotation + ") - backspin (" + backspinRotation + ") = " + xRotation);
 
-        // add topspin
-        m_EulerAngleVelocity = new Vector3(xRotation, 0, 0); // rotate about x axis
-        Quaternion deltaRotation = Quaternion.Euler(m_EulerAngleVelocity * Time.fixedDeltaTime);
-        ballRigidBody.MoveRotation(ballRigidBody.rotation * deltaRotation);
+        if (xRotation != 0)
+        {
+            // add topspin
+            m_EulerAngleVelocity = new Vector3(xRotation, 0, 0); // rotate about x axis
+            Quaternion deltaRotation = Quaternion.Euler(m_EulerAngleVelocity * Time.fixedDeltaTime);
+            // ballRigidBody.MoveRotation(ballRigidBody.rotation * deltaRotation);
+            ballRigidBody.AddTorque(m_EulerAngleVelocity * Time.fixedDeltaTime, ForceMode.Acceleration);
+
+        }
+
+        if (jump)
+        {
+            ballRigidBody.AddForce(Vector3.up, ForceMode.VelocityChange);
+            jump = false;
+        }
     }
 }
