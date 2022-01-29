@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ball
   - Ball Clone
+  - Shoot Ball
   layers:
   - Default
   - TransparentFX

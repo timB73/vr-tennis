@@ -24,7 +24,6 @@ public class BallController : MonoBehaviour
     {
         if (Keyboard.current.wKey.isPressed && topspinRotation < maxRotation)
         {
-            Debug.Log("BallController keyboard w pressed");
             topspinRotation += accelerationFactor;
         }
         else if (!Keyboard.current.wKey.isPressed && topspinRotation > 0)
@@ -61,10 +60,10 @@ public class BallController : MonoBehaviour
     {
         int xRotation = topspinRotation - backspinRotation;
 
-        Debug.Log("X rotation: topspin (" + topspinRotation + ") - backspin (" + backspinRotation + ") = " + xRotation);
 
         if (xRotation != 0)
         {
+            Debug.Log("X rotation: topspin (" + topspinRotation + ") - backspin (" + backspinRotation + ") = " + xRotation);
             // add topspin
             m_EulerAngleVelocity = new Vector3(xRotation, 0, 0); // rotate about x axis
             Quaternion deltaRotation = Quaternion.Euler(m_EulerAngleVelocity * Time.fixedDeltaTime);
