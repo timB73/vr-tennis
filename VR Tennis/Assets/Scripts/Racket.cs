@@ -35,14 +35,14 @@ public class Racket : MonoBehaviour
         Debug.Log("Racket collided with " + col.gameObject.name);
         if (col.gameObject.name.Contains("Ball"))
         {
-            Debug.Log("Ball collided!");
-            Rigidbody ball = col.gameObject.GetComponent<Rigidbody>();
-            Vector3 ballPos = ball.position;
-            GameObject racketFace = Helper.GetChildWithName(gameObject, "RacketFace");
-            Vector3 racketPos = racketFace.transform.position;
+            // Debug.Log("Ball collided!");
+            // Rigidbody ball = col.gameObject.GetComponent<Rigidbody>();
+            // Vector3 ballPos = ball.position;
+            // GameObject racketFace = Helper.GetChildWithName(gameObject, "RacketFace");
+            // Vector3 racketPos = racketFace.transform.position;
 
-            Vector3 dir = aimTarget.position - transform.position; // get the direction to where we want to send the ball
-            ball.velocity = dir.normalized * ballForce + new Vector3(0, 10, 0);
+            // Vector3 dir = aimTarget.position - transform.position; // get the direction to where we want to send the ball
+            // ball.velocity = dir.normalized * ballForce + new Vector3(0, 10, 0);
 
             // ball.AddForce(Vector3.Reflect(ball.velocity, racketPos), ForceMode.Impulse);
         }
