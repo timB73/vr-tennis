@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class Racket : MonoBehaviour
 {
@@ -8,6 +10,9 @@ public class Racket : MonoBehaviour
     // technique inspired from https://github.com/sinoriani/Unity-Projects/blob/master/Tennis%20Game/Player.cs
     [SerializeField] private Transform aimTarget;
     [SerializeField] private float ballForce;
+
+    InputDevice RightControllerDevice;
+    Vector3 RightControllerVelocity;
 
     private Vector3 currentPosition;
     private Vector3 lastPosition;
@@ -18,6 +23,7 @@ public class Racket : MonoBehaviour
     void Start()
     {
         lastPosition = transform.position;
+        RightControllerDevice = InputDevices.GetDeviceAtXRNode(XRNode.RightHand);
     }
 
     // Update is called once per frame
@@ -26,6 +32,12 @@ public class Racket : MonoBehaviour
         currentPosition = transform.position;
         velocity = currentPosition - lastPosition;
         lastPosition = transform.position;
+        UpdateInput();
+    }
+
+    void UpdateInput()
+    {
+        RightControllerDevice.TryGetFeatureValue(CommonUsages.deviceVelocity, out RightControllerVelocity);
     }
 
     void OnCollisionEnter(Collision col)
@@ -36,13 +48,18 @@ public class Racket : MonoBehaviour
         if (col.gameObject.name.Contains("Ball"))
         {
             // Debug.Log("Ball collided!");
-            // Rigidbody ball = col.gameObject.GetComponent<Rigidbody>();
+            Rigidbody ball = col.gameObject.GetComponent<Rigidbody>();
             // Vector3 ballPos = ball.position;
             // GameObject racketFace = Helper.GetChildWithName(gameObject, "RacketFace");
             // Vector3 racketPos = racketFace.transform.position;
 
             // Vector3 dir = aimTarget.position - transform.position; // get the direction to where we want to send the ball
             // ball.velocity = dir.normalized * ballForce + new Vector3(0, 10, 0);
+
+            Debug.Log("Racket velocity: " + RightControllerVelocity);
+
+            Vector3 currVector = ball.position;
+            ball.velocity = RightControllerVelocity;
 
             // ball.AddForce(Vector3.Reflect(ball.velocity, racketPos), ForceMode.Impulse);
         }
