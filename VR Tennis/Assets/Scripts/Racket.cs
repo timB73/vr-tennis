@@ -10,6 +10,7 @@ public class Racket : MonoBehaviour
     // technique inspired from https://github.com/sinoriani/Unity-Projects/blob/master/Tennis%20Game/Player.cs
     [SerializeField] private Transform aimTarget;
     [SerializeField] private float ballForce;
+    [SerializeField] private MeshRenderer meshRenderer;
 
     InputDevice RightControllerDevice;
     Vector3 RightControllerVelocity;
@@ -17,7 +18,6 @@ public class Racket : MonoBehaviour
     private Vector3 currentPosition;
     private Vector3 lastPosition;
     private Vector3 velocity;
-
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +38,9 @@ public class Racket : MonoBehaviour
     void UpdateInput()
     {
         RightControllerDevice.TryGetFeatureValue(CommonUsages.deviceVelocity, out RightControllerVelocity);
+        Debug.Log("Right controller velocity: " + RightControllerVelocity);
+        Color color = new Color(RightControllerVelocity.x, RightControllerVelocity.y, RightControllerVelocity.z);
+        meshRenderer.material.color = color;
     }
 
     void OnCollisionEnter(Collision col)
