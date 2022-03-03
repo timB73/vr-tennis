@@ -8,17 +8,23 @@ public class Racket2 : MonoBehaviour
 {
     private InputDevice device;
 
+    private GameObject racketFace;
+
+
+
     // technique inspired from https://github.com/sinoriani/Unity-Projects/blob/master/Tennis%20Game/Player.cs
     [SerializeField] private Transform aimTarget;
     [SerializeField] private float ballForce;
 
+    [SerializeField] private float racketZSpring;
+    [SerializeField] private float racketYSpring;
+
     private Vector3 currentPosition;
     private Vector3 lastPosition;
-    private Vector3 velocity;
+    private Matrix4x4[] transform_history = new Matrix4x4[10];// store last 10 local to world matrices for calculating velocity at a particular hit point
     private InputFeatureUsage<Vector3> deviceAccelerationUsage;
 
     private XRNodeState deviceState;
-    private DrawHelper drawHelper;
 
     private float timeSinceTrigger = 0;
 
@@ -27,8 +33,8 @@ public class Racket2 : MonoBehaviour
     {
         InputTracking.nodeAdded += nodeAdded;
         lastPosition = transform.position;
-        drawHelper = new DrawHelper(this.gameObject);
         getDevice();
+        racketFace = Helper.GetChildWithName(gameObject, "RacketFace");
     }
 
 
@@ -68,22 +74,19 @@ public class Racket2 : MonoBehaviour
 
     void FixedUpdate()
     {
-        GameObject racketFace = Helper.GetChildWithName(gameObject, "RacketFace");
-        currentPosition = racketFace.transform.position;
-        Vector3 thisVel = (currentPosition - lastPosition) / Time.fixedDeltaTime;
-        // smooth out the velocity estimation
-        velocity = thisVel * 0.2f + velocity * 0.8f;
-        lastPosition = currentPosition;
+        // shift along rotation history
+        System.Array.Copy(transform_history, 0, transform_history, 1, transform_history.Length - 1);
+        // add in new position history
+        transform_history[0] = racketFace.transform.localToWorldMatrix;
         timeSinceTrigger += Time.fixedDeltaTime;
-        // Debug.Log(velocity);
     }
 
     void OnTriggerEnter(Collider col)
     {
-        // if (timeSinceTrigger < 0.1)
-        // {
-        //     return;
-        // }
+        if (timeSinceTrigger < 0.1)
+        {
+            return;
+        }
         timeSinceTrigger = 0;
         getDevice();
         //This method will run when your game object
@@ -94,51 +97,34 @@ public class Racket2 : MonoBehaviour
             Vector3 ballPos = ball.position;
             GameObject racketFace = Helper.GetChildWithName(gameObject, "RacketFace");
             Vector3 racketPos = racketFace.transform.position;
+            // where on the racket it was hit
+            Vector3 localHitPos = racketFace.transform.InverseTransformPoint(ballPos);
+            // world position of the hit point 10 frames back
+            Vector3 previousWorldHitPos = transform_history[transform_history.Length - 1].MultiplyPoint(localHitPos);
+
+            Vector3 velocity = (ballPos - previousWorldHitPos) / (Time.fixedDeltaTime * 10.0f);
+            print("Hit velocity:" + velocity + "!!!" + (previousWorldHitPos - ballPos));
+
+            // localOutgoingVelocity = new Vector3(-localIncomingVelocity.x,ballYVelocity,ballZVelocity); // where ballY and Z velocity are transformed into the racket space.
 
             // do the bounce based on how fast the ball is coming towards the racket
             // it should bounce back at this but flipped in the
-            //  racket x axis
+            //  racket  x axis
             // TODO: You need to fix this so that it also calculates the rotational velocity of the racket head
             // and then uses that to estimate the speed of motion of the racket at the hit point
             Vector3 incomingVelocity = ball.velocity - velocity;
             Vector3 localIncomingVelocity = transform.InverseTransformVector(incomingVelocity);
-            Vector3 localOutgoingVelocity = new Vector3(localIncomingVelocity.x, localIncomingVelocity.y, localIncomingVelocity.z);
+            Vector3 localOutgoingVelocity = new Vector3(-localIncomingVelocity.x, localIncomingVelocity.y, localIncomingVelocity.z);
             Vector3 outgoingVelocity = transform.TransformVector(localOutgoingVelocity) + velocity;
             Debug.Log("Ball collided!" + velocity + ":" + incomingVelocity + ":" + localIncomingVelocity + "!" + localOutgoingVelocity + "#" + outgoingVelocity);
 
-            // ball.velocity = outgoingVelocity;
-
-            DrawBallPath(transform.position, outgoingVelocity);
-
-            // ball.velocity = outgoingVelocity * ballForce;
-            Vector3 multiply = outgoingVelocity * ballForce;
-            Debug.Log("Final vector: " + multiply);
-            if (multiply.y > 400)
-            {
-                multiply.y *= 0.6f; // smooth any erratic y velocity
-            }
-            if (multiply.z > 800)
-            {
-                multiply.z *= 0.6f;
-            }
-            Debug.Log("Final vector2: " + multiply);
-            OculusDebug.Instance.log("Final vector2: " + multiply);
-            ball.AddForce(multiply, ForceMode.Acceleration);
+            outgoingVelocity.z *= racketZSpring;
+            outgoingVelocity.y *= racketYSpring;
+            ball.velocity = outgoingVelocity;
 
             // = dir.normalized * ballForce + new Vector3(0, 10, 0);
 
             // ball.AddForce(Vector3.Reflect(ball.velocity, racketPos), ForceMode.Impulse);
         }
-    }
-
-    private IEnumerator DrawBallPath(Vector3 start, Vector3 end)
-    {
-        drawHelper.DrawLine(start, end);
-
-        WaitForSeconds wait = new WaitForSeconds(3);
-
-        yield return wait;
-
-        // drawHelper.ClearLine();
     }
 }

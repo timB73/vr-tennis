@@ -56,6 +56,9 @@ sysinfo.txt
 *.apk
 *.unitypackage
 
+# IL2CPP build artifacts should be ignored
+*BackUpThisFolder_ButDontShipItWithYourGame
+
 # Crashlytics generated file
 crashlytics-build.properties
 
