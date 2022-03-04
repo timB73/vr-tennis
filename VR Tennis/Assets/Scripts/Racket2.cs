@@ -118,6 +118,11 @@ public class Racket2 : MonoBehaviour
             Vector3 outgoingVelocity = transform.TransformVector(localOutgoingVelocity) + velocity;
             Debug.Log("Ball collided!" + velocity + ":" + incomingVelocity + ":" + localIncomingVelocity + "!" + localOutgoingVelocity + "#" + outgoingVelocity);
 
+            Vector3 spinVector = new Vector3(0, localIncomingVelocity.z, localIncomingVelocity.y) * 10;
+            Vector3 spinVectorWorld = transform.TransformVector(spinVector);
+
+            ball.AddTorque(spinVectorWorld, ForceMode.VelocityChange);
+
             outgoingVelocity.z *= racketZSpring;
             outgoingVelocity.y *= racketYSpring;
             ball.velocity = outgoingVelocity;
