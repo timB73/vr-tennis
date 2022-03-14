@@ -114,14 +114,15 @@ public class Racket2 : MonoBehaviour
             // and then uses that to estimate the speed of motion of the racket at the hit point
             Vector3 incomingVelocity = ball.velocity - velocity;
             Vector3 localIncomingVelocity = transform.InverseTransformVector(incomingVelocity);
+            Vector3 spinVector = new Vector3(0, localIncomingVelocity.z, -localIncomingVelocity.y);
+            Vector3 spinVectorWorld = transform.TransformVector(spinVector);
+
+            ball.AddTorque(10.0f * spinVectorWorld, ForceMode.Acceleration);
+            ball.maxAngularVelocity = 100000;
+            Debug.Log("Spin: " + spinVectorWorld + ":" + spinVector + "!" + ball.angularVelocity);
             Vector3 localOutgoingVelocity = new Vector3(-localIncomingVelocity.x, localIncomingVelocity.y, localIncomingVelocity.z);
             Vector3 outgoingVelocity = transform.TransformVector(localOutgoingVelocity) + velocity;
             Debug.Log("Ball collided!" + velocity + ":" + incomingVelocity + ":" + localIncomingVelocity + "!" + localOutgoingVelocity + "#" + outgoingVelocity);
-
-            Vector3 spinVector = new Vector3(0, localIncomingVelocity.z, localIncomingVelocity.y) * 10;
-            Vector3 spinVectorWorld = transform.TransformVector(spinVector);
-
-            ball.AddTorque(spinVectorWorld, ForceMode.VelocityChange);
 
             outgoingVelocity.z *= racketZSpring;
             outgoingVelocity.y *= racketYSpring;

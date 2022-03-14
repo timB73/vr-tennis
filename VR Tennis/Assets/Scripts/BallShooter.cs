@@ -37,7 +37,7 @@ public class BallShooter : MonoBehaviour
 
             foreach (GameObject b in balls)
             {
-                GameObject.Destroy(b);
+                // GameObject.Destroy(b);
             }
 
             Rigidbody spawnBall = Instantiate(ball, transform.position, transform.rotation);

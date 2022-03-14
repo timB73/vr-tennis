@@ -202,6 +202,18 @@ MonoBehaviour:
   maxRotation: 10000
   accelerationFactor: 10
   decellerationFactor: 2
+--- !u!114 &316080955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 316080947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b57179be116b5b4e8c2400391f08f2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &332970428
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1211,8 +1223,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   runBallMachine: 1
   ball: {fileID: 223974232}
-  ballForce: 12
-  upForce: 4
+  ballForce: 18
+  upForce: 7
   aimTarget: {fileID: 574755006}
 --- !u!65 &1018780858
 BoxCollider:
@@ -1312,8 +1324,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aimTarget: {fileID: 0}
   ballForce: 1.5
-  racketZSpring: 1
-  racketYSpring: 1
+  racketZSpring: 2.3
+  racketYSpring: 1.8
 --- !u!65 &1035347320
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2599,12 +2611,12 @@ PrefabInstance:
     - target: {fileID: 1218227031608072259, guid: 3334b50ced28943fdbb97535ae374762,
         type: 3}
       propertyPath: m_Drag
-      value: 0
+      value: 0.82
       objectReference: {fileID: 0}
     - target: {fileID: 1218227031608072259, guid: 3334b50ced28943fdbb97535ae374762,
         type: 3}
       propertyPath: m_AngularDrag
-      value: 0
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 1218227031608072265, guid: 3334b50ced28943fdbb97535ae374762,
         type: 3}
