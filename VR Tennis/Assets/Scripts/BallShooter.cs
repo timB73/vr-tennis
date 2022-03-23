@@ -30,6 +30,7 @@ public class BallShooter : MonoBehaviour
 
         while (runBallMachine)
         {
+            yield return wait;
             Debug.Log("shoot ball");
 
             GameObject[] balls = GameObject.FindGameObjectsWithTag("Shoot Ball");
@@ -47,7 +48,6 @@ public class BallShooter : MonoBehaviour
             Debug.Log("Ball direction " + dir + " normalized = " + dir.normalized);
             spawnBall.velocity = dir.normalized * ballForce + new Vector3(0, upForce, 0);
 
-            yield return wait;
         }
     }
 }
