@@ -30,12 +30,12 @@ public class OculusDebug : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (OVRInput.GetDown(OVRInput.Button.Two) || OVRInput.GetDown(OVRInput.Button.Start))
-        {
-            if (inMenu) DebugUIBuilder.instance.Hide();
-            else DebugUIBuilder.instance.Show();
-            inMenu = !inMenu;
-        }
+        // if (OVRInput.GetDown(OVRInput.Button.Two) || OVRInput.GetDown(OVRInput.Button.Start))
+        // {
+        //     if (inMenu) DebugUIBuilder.instance.Hide();
+        //     else DebugUIBuilder.instance.Show();
+        //     inMenu = !inMenu;
+        // }
 
     }
 

@@ -6,7 +6,6 @@ using UnityEngine.XR;
 
 public class Racket2 : MonoBehaviour
 {
-    private InputDevice device;
 
     private GameObject racketFace;
 
@@ -22,7 +21,6 @@ public class Racket2 : MonoBehaviour
     private Vector3 currentPosition;
     private Vector3 lastPosition;
     private Matrix4x4[] transform_history = new Matrix4x4[10];// store last 10 local to world matrices for calculating velocity at a particular hit point
-    private InputFeatureUsage<Vector3> deviceAccelerationUsage;
 
     private XRNodeState deviceState;
 
@@ -33,7 +31,7 @@ public class Racket2 : MonoBehaviour
     {
         InputTracking.nodeAdded += nodeAdded;
         lastPosition = transform.position;
-        getDevice();
+        // getDevice();
         racketFace = Helper.GetChildWithName(gameObject, "RacketFace");
     }
 
@@ -46,26 +44,26 @@ public class Racket2 : MonoBehaviour
             deviceState = node;
         }
     }
-    void getDevice()
-    {
-        if (!device.isValid)
-        {
-            List<InputDevice> devices = new List<InputDevice>();
-            InputDevices.GetDevicesAtXRNode(XRNode.RightHand, devices);
-            if (devices.Count > 0)
-            {
-                device = devices[0];
-                deviceAccelerationUsage = CommonUsages.deviceAcceleration;
-                Debug.Log("Get new device" + device);
-            }
-            else
-            {
-                Debug.Log("No RH device yet");
-            }
+    // void getDevice()
+    // {
+    //     if (!device.isValid)
+    //     {
+    //         List<InputDevice> devices = new List<InputDevice>();
+    //         InputDevices.GetDevicesAtXRNode(XRNode.RightHand, devices);
+    //         if (devices.Count > 0)
+    //         {
+    //             device = devices[0];
+    //             deviceAccelerationUsage = CommonUsages.deviceAcceleration;
+    //             Debug.Log("Get new device" + device);
+    //         }
+    //         else
+    //         {
+    //             Debug.Log("No RH device yet");
+    //         }
 
-        }
+    //     }
 
-    }
+    // }
 
     // Update is called once per frame
     void Update()
@@ -88,7 +86,7 @@ public class Racket2 : MonoBehaviour
             return;
         }
         timeSinceTrigger = 0;
-        getDevice();
+        // getDevice();
         //This method will run when your game object
         Debug.Log("Racket collided with " + col.gameObject.name);
         if (col.gameObject.name.Contains("Ball"))
@@ -110,8 +108,6 @@ public class Racket2 : MonoBehaviour
             // do the bounce based on how fast the ball is coming towards the racket
             // it should bounce back at this but flipped in the
             //  racket  x axis
-            // TODO: You need to fix this so that it also calculates the rotational velocity of the racket head
-            // and then uses that to estimate the speed of motion of the racket at the hit point
             Vector3 incomingVelocity = ball.velocity - velocity;
             Vector3 localIncomingVelocity = transform.InverseTransformVector(incomingVelocity);
             Vector3 spinVector = new Vector3(0, localIncomingVelocity.z, -localIncomingVelocity.y);

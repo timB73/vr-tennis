@@ -547,6 +547,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CanvasWithDebug
       objectReference: {fileID: 0}
+    - target: {fileID: 1620922654972176, guid: ddb963bcde7d8a04a88b3ee4709f46c7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 114372397652771654, guid: ddb963bcde7d8a04a88b3ee4709f46c7,
         type: 3}
       propertyPath: m_PresetInfoIsWorld
@@ -1348,6 +1352,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1045848416}
+  - component: {fileID: 1045848417}
   m_Layer: 0
   m_Name: Camera Offset
   m_TagString: Untagged
@@ -1371,6 +1376,19 @@ Transform:
   m_Father: {fileID: 1725982594}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1045848417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1045848415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa6c35a1902a0594c902b8f64b8deb82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotate: 1
 --- !u!1 &1091737542
 GameObject:
   m_ObjectHideFlags: 0
