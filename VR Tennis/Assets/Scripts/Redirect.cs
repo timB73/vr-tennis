@@ -15,11 +15,9 @@ public class Redirect : MonoBehaviour
         // StartCoroutine(RotateCamera());
 
         var headMounts = new List<UnityEngine.XR.InputDevice>();
-        Debug.Log("testing 123");
         UnityEngine.XR.InputDevices.GetDevicesWithCharacteristics(UnityEngine.XR.InputDeviceCharacteristics.HeadMounted, headMounts);
 
         // OculusDebug.Instance.log("Hello, getting devices " + headMounts.Count);
-        Debug.Log("Hello, getting devices " + headMounts.Count);
         foreach (var device in headMounts)
         {
             // from logs: Device name 'Oculus Quest' has characteristic 'HeadMounted, TrackedDevice'

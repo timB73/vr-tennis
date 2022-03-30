@@ -20,7 +20,6 @@ public class Target : MonoBehaviour
         // this.transform.position = TargetPositions.LEFT_SERVICE_BOX;
 
         var headMounts = new List<UnityEngine.XR.InputDevice>();
-        Debug.Log("testing 123");
         UnityEngine.XR.InputDevices.GetDevicesWithCharacteristics(UnityEngine.XR.InputDeviceCharacteristics.HeadMounted, headMounts);
 
         headset = headMounts[0];
@@ -37,6 +36,15 @@ public class Target : MonoBehaviour
         if (headset.TryGetFeatureValue(UnityEngine.XR.CommonUsages.devicePosition, out headsetPosition))
         {
             Debug.Log("Got headset position: " + headsetPosition);
+            if (headsetPosition.y < 1.07f)
+            {
+                Debug.Log("Headset pos: Looking at the ground!");
+                scene.transform.position = new Vector3(scene.transform.position.x, scene.transform.position.y, scene.transform.position.z + 0.1f);
+            }
+            else
+            {
+                Debug.Log("Headset pos: NOT looking at the ground");
+            }
         }
     }
 
