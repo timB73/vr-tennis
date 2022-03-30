@@ -39,7 +39,7 @@ public class Target : MonoBehaviour
             if (headsetPosition.y < 1.07f)
             {
                 Debug.Log("Headset pos: Looking at the ground!");
-                scene.transform.position = new Vector3(scene.transform.position.x, scene.transform.position.y, scene.transform.position.z + 0.1f);
+                // scene.transform.position = new Vector3(scene.transform.position.x, scene.transform.position.y, scene.transform.position.z + 0.1f);
             }
             else
             {
