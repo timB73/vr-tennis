@@ -5,13 +5,13 @@ using UnityEngine;
 public class Redirect : MonoBehaviour
 {
 
-    GameObject mainCamera;
+    GameObject court;
     [SerializeField] bool rotate = true;
 
     // Start is called before the first frame update
     void Start()
     {
-        mainCamera = this.gameObject;
+        court = this.gameObject;
         // StartCoroutine(RotateCamera());
 
         var headMounts = new List<UnityEngine.XR.InputDevice>();
@@ -32,7 +32,7 @@ public class Redirect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        // court.transform.Translate(Vector3.forward * Time.deltaTime);
     }
 
     void FixedUpdate()
@@ -40,20 +40,16 @@ public class Redirect : MonoBehaviour
 
     }
 
-    private IEnumerator RotateCamera()
-    {
-        WaitForSeconds wait = new WaitForSeconds(0.5f);
+    // private IEnumerator RotateCamera()
+    // {
+    //     WaitForSeconds wait = new WaitForSeconds(0.5f);
 
-        while (rotate)
-        {
+    //     while (rotate)
+    //     {
 
-            mainCamera.transform.eulerAngles = new Vector3(
-            mainCamera.transform.eulerAngles.x,
-            mainCamera.transform.eulerAngles.y + 5,
-            mainCamera.transform.eulerAngles.z
-            );
+    //         court.transform.position.x = new Vector3()
 
-            yield return wait;
-        }
-    }
+    //         yield return wait;
+    //     }
+    // }
 }
