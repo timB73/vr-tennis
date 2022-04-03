@@ -88,7 +88,7 @@ public class Racket2 : MonoBehaviour
         timeSinceTrigger = 0;
         // getDevice();
         //This method will run when your game object
-        Debug.Log("Racket collided with " + col.gameObject.name);
+        // Debug.Log("Racket collided with " + col.gameObject.name);
         if (col.gameObject.name.Contains("Ball"))
         {
             Rigidbody ball = col.gameObject.GetComponent<Rigidbody>();

@@ -1098,6 +1098,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "HitReference",
+                    "type": "Button",
+                    "id": "2f957ff7-e64e-4693-8634-a4d0668c189d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -1109,6 +1118,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "SpawnBall",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e214ce38-b4cf-4085-97cb-d6f8d0f5c10e",
+                    "path": "<XRController>{LeftHand}/triggerPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "HitReference",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -40,13 +40,42 @@ public class BallShooter : MonoBehaviour
                 // GameObject.Destroy(b);
             }
 
-            Rigidbody spawnBall = Instantiate(ball, transform.position, transform.rotation);
-            spawnBall.tag = "Shoot Ball";
-
-            Vector3 dir = (aimTarget.position - transform.position); // get the direction to where we want to send the ball
-
-            spawnBall.velocity = dir.normalized * ballForce + new Vector3(0, upForce, 0);
+            Shoot();
 
         }
+    }
+
+
+    public void ShootWithDelay(int seconds)
+    {
+        StartCoroutine(ShootWithDelayCoroutine(seconds));
+    }
+
+    private IEnumerator ShootWithDelayCoroutine(int seconds)
+    {
+        WaitForSeconds wait = new WaitForSeconds(seconds);
+
+        yield return wait;
+
+        Shoot();
+    }
+
+    public void Shoot()
+    {
+        Rigidbody spawnBall = Instantiate(ball, transform.position, transform.rotation);
+        spawnBall.tag = "Shoot Ball";
+
+        Vector3 dir = (aimTarget.position - transform.position); // get the direction to where we want to send the ball
+
+        Debug.Log("Ball dir: " + dir + " (normalized = " + dir.normalized + ")");
+
+        var ballForceAdjusted = ballForce;
+
+        if (Mathf.Abs(dir.z) < 10)
+        {
+            ballForceAdjusted = ballForce / 1.5f; // half the force when near net
+        }
+
+        spawnBall.velocity = dir.normalized * ballForceAdjusted + new Vector3(0, upForce, 0);
     }
 }

@@ -4,50 +4,36 @@ using UnityEngine;
 
 public class Redirect : MonoBehaviour
 {
+    [SerializeField] private GameObject xrRig;
+    [SerializeField] private GameObject button;
+    [SerializeField] private GameObject target;
 
-    GameObject court;
-    [SerializeField] bool rotate = true;
+    private bool isForehandSide = true;
 
-    // Start is called before the first frame update
-    void Start()
+    private int xrRigPositionIndex = 0;
+
+    public void MovePlayer()
     {
-        court = this.gameObject;
-        // StartCoroutine(RotateCamera());
+        Vector3 buttonOffset;
+        // xrRig.transform.position = TargetPositions.positionsArray[xrRigPositionIndex];
+        // button.transform.position = TargetPositions.positionsArray[xrRigPositionIndex] + buttonOffset;
+        // if (xrRigPositionIndex + 1 > TargetPositions.positionsArray.Length - 1)
+        //     xrRigPositionIndex = 0;
+        // else
+        //     xrRigPositionIndex += 1;
 
-        var headMounts = new List<UnityEngine.XR.InputDevice>();
-        UnityEngine.XR.InputDevices.GetDevicesWithCharacteristics(UnityEngine.XR.InputDeviceCharacteristics.HeadMounted, headMounts);
-
-        // OculusDebug.Instance.log("Hello, getting devices " + headMounts.Count);
-        foreach (var device in headMounts)
+        if (isForehandSide)
         {
-            // from logs: Device name 'Oculus Quest' has characteristic 'HeadMounted, TrackedDevice'
-            string message = string.Format("Device name '{0}' has characteristic '{1}'", device.name, device.characteristics.ToString());
-            Debug.Log(message);
-            // OculusDebug.Instance.log(message);
+            buttonOffset = new Vector3(1, 0, 0);
         }
+        else
+        {
+            buttonOffset = new Vector3(-1, 0, 0);
+        }
+
+        // target.transform.position = button.transform.position + new Vector3(0, 0, 1); // set target to where button was
+
+        button.transform.position = xrRig.transform.position + buttonOffset; // move button
+        isForehandSide = !isForehandSide; // alternate between forehand and backhand
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        // court.transform.Translate(Vector3.forward * Time.deltaTime);
-    }
-
-    void FixedUpdate()
-    {
-
-    }
-
-    // private IEnumerator RotateCamera()
-    // {
-    //     WaitForSeconds wait = new WaitForSeconds(0.5f);
-
-    //     while (rotate)
-    //     {
-
-    //         court.transform.position.x = new Vector3()
-
-    //         yield return wait;
-    //     }
-    // }
 }
