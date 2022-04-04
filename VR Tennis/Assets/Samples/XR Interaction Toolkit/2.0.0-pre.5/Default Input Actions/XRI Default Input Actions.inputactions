@@ -1113,7 +1113,7 @@
                 {
                     "name": "",
                     "id": "ce778446-c957-4d6d-a7b7-fd76d43e09c7",
-                    "path": "<XRController>{LeftHand}/gripPressed",
+                    "path": "<XRController>{RightHand}/gripPressed",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
