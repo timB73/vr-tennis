@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Redirect : MonoBehaviour
 {
+    public float buttonDistance = 1;
     [SerializeField] private GameObject xrRig;
     [SerializeField] private GameObject button;
     [SerializeField] private GameObject target;
@@ -14,7 +15,7 @@ public class Redirect : MonoBehaviour
 
     void Start()
     {
-        button.transform.position = xrRig.transform.position + new Vector3(-1, 0, 0);
+        button.transform.position = xrRig.transform.position + new Vector3(buttonDistance * -1, 0, 0);
     }
 
     public void MovePlayer()
@@ -29,11 +30,11 @@ public class Redirect : MonoBehaviour
 
         if (isForehandSide)
         {
-            buttonOffset = new Vector3(1, 0, 0);
+            buttonOffset = new Vector3(buttonDistance, 0, 0);
         }
         else
         {
-            buttonOffset = new Vector3(-1, 0, 0);
+            buttonOffset = new Vector3(buttonDistance * -1, 0, 0);
         }
 
         // target.transform.position = button.transform.position + new Vector3(0, 0, 1); // set target to where button was

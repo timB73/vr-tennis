@@ -323,6 +323,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa6c35a1902a0594c902b8f64b8deb82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonDistance: 1
   xrRig: {fileID: 1725982592}
   button: {fileID: 1944277202}
   target: {fileID: 782628375}
@@ -1217,6 +1218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa6c35a1902a0594c902b8f64b8deb82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonDistance: 1
   xrRig: {fileID: 0}
   button: {fileID: 0}
   target: {fileID: 0}
