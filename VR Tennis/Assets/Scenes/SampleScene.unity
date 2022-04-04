@@ -2700,6 +2700,11 @@ PrefabInstance:
       propertyPath: BallPrefab
       value: 
       objectReference: {fileID: 223974232}
+    - target: {fileID: 4546421138226048895, guid: 2e0b7c00e7183e446bc6a40191c397c1,
+        type: 3}
+      propertyPath: ballMachine
+      value: 
+      objectReference: {fileID: 1018780857}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e0b7c00e7183e446bc6a40191c397c1, type: 3}
 --- !u!1001 &5299024859595531162

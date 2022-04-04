@@ -6,9 +6,8 @@ using UnityEngine.InputSystem;
 public class SpawnBall : MonoBehaviour
 {
     public InputActionReference SpawnReference = null;
-    public Rigidbody BallPrefab;
-
-    public Transform Spawnpoint;
+    public BallShooter ballMachine;
+    [SerializeField] private int ballDelayInSeconds = 5;
 
     private void Awake()
     {
@@ -22,18 +21,6 @@ public class SpawnBall : MonoBehaviour
 
     void SpawnTennisBall(InputAction.CallbackContext context)
     {
-        // Transform spawnTransform = holdingController.transform;
-        Debug.Log("Spawned tennis ball");
-
-        GameObject[] balls = GameObject.FindGameObjectsWithTag("Ball Clone");
-
-
-        foreach (GameObject b in balls)
-        {
-            GameObject.Destroy(b);
-        }
-
-        Rigidbody ball = Instantiate(BallPrefab, Spawnpoint.position, Spawnpoint.rotation);
-        ball.tag = "Ball Clone";
+        ballMachine.ShootWithDelay(ballDelayInSeconds);
     }
 }

@@ -12,6 +12,11 @@ public class Redirect : MonoBehaviour
 
     private int xrRigPositionIndex = 0;
 
+    void Start()
+    {
+        button.transform.position = xrRig.transform.position + new Vector3(-1, 0, 0);
+    }
+
     public void MovePlayer()
     {
         Vector3 buttonOffset;
