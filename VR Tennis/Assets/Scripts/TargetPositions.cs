@@ -15,6 +15,6 @@ public class TargetPositions : MonoBehaviour
 
     public static Vector3 BACK_RIGHT = new Vector3(2.49000001f, 0.117399998f, -10.0600004f);
 
-    public static Vector3[] positionsArray = new[] { TargetPositions.LEFT_SERVICE_BOX, TargetPositions.RIGHT_SERVICE_BOX, TargetPositions.BACK_LEFT, TargetPositions.BACK_RIGHT };
+    public static Vector3[] positionsArray = new[] { TargetPositions.BACK_LEFT, TargetPositions.BACK_RIGHT, TargetPositions.LEFT_SERVICE_BOX, TargetPositions.RIGHT_SERVICE_BOX };
 
 }

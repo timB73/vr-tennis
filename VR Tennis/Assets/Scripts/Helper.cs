@@ -17,4 +17,10 @@ public class Helper
             return null;
         }
     }
+
+    public static void MovePlayer(GameObject xrRig, GameObject target, Vector3 newPosition)
+    {
+        xrRig.transform.position = newPosition;
+        target.transform.position = newPosition + new Vector3(0, 0, 1);
+    }
 }
