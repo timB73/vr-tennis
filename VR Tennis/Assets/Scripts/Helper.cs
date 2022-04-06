@@ -20,7 +20,7 @@ public class Helper
 
     public static void MovePlayer(GameObject xrRig, GameObject target, Vector3 newPosition)
     {
+        target.transform.position = newPosition;
         xrRig.transform.position = newPosition;
-        target.transform.position = newPosition + new Vector3(0, 0, 1);
     }
 }

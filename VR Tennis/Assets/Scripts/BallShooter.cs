@@ -8,8 +8,6 @@ public class BallShooter : MonoBehaviour
     public bool runBallMachine = true;
 
     [SerializeField] private Rigidbody ball;
-    [SerializeField] private float ballForce;
-    [SerializeField] private float upForce;
     [SerializeField] private Transform aimTarget;
 
     // Start is called before the first frame update
@@ -60,22 +58,39 @@ public class BallShooter : MonoBehaviour
         Shoot();
     }
 
+    /**
+        Use projectile motion physics to calculate the starting velocity vector needed to hit target
+        https://www.youtube.com/watch?v=03GHtGyEHas
+    **/
+    Vector3 CalculateVelocity(Vector3 target, Vector3 origin, float time)
+    {
+        // define distance x and y first
+        Vector3 distance = target - origin;
+        Vector3 distanceXZ = distance;
+        distanceXZ.y = 0f;
+
+        // create a float that represents our distance
+        float Sy = distance.y;
+        float Sxz = distanceXZ.magnitude;
+
+        // Projectile equations to calculate initial velocity
+        float Vxz = Sxz / time; // Vx = x / t
+        float Vy = Sy / time + 0.5f * Mathf.Abs(Physics.gravity.y) * time; // Vy0 = y/t + 1/2 * g * t
+
+        Vector3 result = distanceXZ.normalized;
+        result *= Vxz;
+        result.y = Vy;
+
+        return result;
+    }
+
     public void Shoot()
     {
+        Vector3 velocity = CalculateVelocity(aimTarget.position, transform.position, 1.5f);
+        transform.rotation = Quaternion.LookRotation(velocity);
+
         Rigidbody spawnBall = Instantiate(ball, transform.position, transform.rotation);
         spawnBall.tag = "Shoot Ball";
-
-        Vector3 dir = (aimTarget.position - transform.position); // get the direction to where we want to send the ball
-
-        Debug.Log("Ball dir: " + dir + " (normalized = " + dir.normalized + ")");
-
-        var ballForceAdjusted = ballForce;
-
-        if (Mathf.Abs(dir.z) < 10)
-        {
-            ballForceAdjusted = ballForce / 1.5f; // half the force when near net
-        }
-
-        spawnBall.velocity = dir.normalized * ballForceAdjusted + new Vector3(0, upForce, 0);
+        spawnBall.velocity = velocity;
     }
 }

@@ -403,7 +403,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 316080947}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b57179be116b5b4e8c2400391f08f2e, type: 3}
   m_Name: 
@@ -553,7 +553,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 574755002}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 2.16}
   m_LocalScale: {x: 1, y: 0.04688178, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -928,8 +928,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 782628375}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.59109247, y: 0.6333295, z: -4.1789956}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.544, y: 0.648, z: -6.508}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1062,6 +1062,7 @@ GameObject:
   - component: {fileID: 1018780859}
   - component: {fileID: 1018780858}
   - component: {fileID: 1018780857}
+  - component: {fileID: 1018780862}
   m_Layer: 0
   m_Name: Ball Machine
   m_TagString: Untagged
@@ -1081,11 +1082,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90024a986c0b74d9c977003627907064, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runBallMachine: 0
+  runBallMachine: 1
   ball: {fileID: 223974232}
   ballForce: 18
   upForce: 7
-  aimTarget: {fileID: 782628376}
+  aimTarget: {fileID: 574755006}
 --- !u!65 &1018780858
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1164,6 +1165,20 @@ Transform:
   m_Father: {fileID: 1088438548}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &1018780862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1018780856}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 853351700935b3644bfd89c113d13134, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distance: 13.6
+  target: {fileID: 574755002}
 --- !u!1 &1088438547
 GameObject:
   m_ObjectHideFlags: 0
@@ -1285,7 +1300,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1450094769}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1.58}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.52536213, y: 0.01, z: 0.6600629}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2531,7 +2546,7 @@ PrefabInstance:
     - target: {fileID: 1218227031608072259, guid: 3334b50ced28943fdbb97535ae374762,
         type: 3}
       propertyPath: m_Drag
-      value: 0.82
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1218227031608072259, guid: 3334b50ced28943fdbb97535ae374762,
         type: 3}
