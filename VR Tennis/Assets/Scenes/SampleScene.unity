@@ -2663,12 +2663,12 @@ PrefabInstance:
     - target: {fileID: 4546421136733337069, guid: 2e0b7c00e7183e446bc6a40191c397c1,
         type: 3}
       propertyPath: racketYSpring
-      value: 1.6
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 4546421136733337069, guid: 2e0b7c00e7183e446bc6a40191c397c1,
         type: 3}
       propertyPath: racketZSpring
-      value: 1.6
+      value: 1.4
       objectReference: {fileID: 0}
     - target: {fileID: 4546421137649592322, guid: 2e0b7c00e7183e446bc6a40191c397c1,
         type: 3}

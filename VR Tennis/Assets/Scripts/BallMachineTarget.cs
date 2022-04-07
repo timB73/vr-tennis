@@ -22,7 +22,7 @@ public class BallMachineTarget : MonoBehaviour
         if (collider.gameObject.tag.Contains("Ball"))
         {
             Rigidbody rb = collider.gameObject.GetComponent<Rigidbody>();
-            rb.drag = 0.83f;
+            rb.drag = 0.6f;
         }
     }
 }
