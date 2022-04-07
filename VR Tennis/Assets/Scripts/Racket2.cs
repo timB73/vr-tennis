@@ -13,7 +13,6 @@ public class Racket2 : MonoBehaviour
 
     // technique inspired from https://github.com/sinoriani/Unity-Projects/blob/master/Tennis%20Game/Player.cs
     [SerializeField] private Transform aimTarget;
-    [SerializeField] private float ballForce;
 
     [SerializeField] private float racketZSpring;
     [SerializeField] private float racketYSpring;
