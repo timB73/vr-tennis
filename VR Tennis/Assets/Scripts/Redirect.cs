@@ -6,53 +6,73 @@ public class Redirect : MonoBehaviour
 {
     public float buttonDistance = 1;
     [SerializeField] private GameObject xrRig;
+    [SerializeField] private GameObject scene;
     [SerializeField] private GameObject button;
     [SerializeField] private GameObject target;
+    [SerializeField] private GameObject courtCenter;
 
-    private int[] positionIndexes = new int[] { 0, 0, 0, 0, 2, 2, 2, 2 };
-    private int currentIndex = 0;
+    [SerializeField] private float distanceThreshold = 0.33f; // the x distance between the target and the player which to no longer move the scene
+    [SerializeField] private float sceneMoveBy = 0.5f; // distance to move the scene by every second
 
-    private bool isForehandSide = true;
-
-    private int xrRigPositionIndex = 0;
+    private bool isForehandSide = false;
 
     void Start()
     {
-        Helper.MovePlayer(xrRig, target, TargetPositions.positionsArray[positionIndexes[currentIndex]]);
+        // Helper.MovePlayer(xrRig, target, TargetPositions.positionsArray[positionIndexes[currentIndex]]);
         button.transform.position = xrRig.transform.position + new Vector3(buttonDistance * -1, 0, 0);
     }
 
+    void Update()
+    {
+        float distance = GetDistanceToTarget();
+        Debug.Log("Distance to target: " + distance);
+    }
+
+    /**
+        Called when the button is pressed
+    **/
     public void MovePlayer()
     {
-        Vector3 buttonOffset;
-        // xrRig.transform.position = TargetPositions.positionsArray[xrRigPositionIndex];
-        // button.transform.position = TargetPositions.positionsArray[xrRigPositionIndex] + buttonOffset;
-        // if (xrRigPositionIndex + 1 > TargetPositions.positionsArray.Length - 1)
-        //     xrRigPositionIndex = 0;
-        // else
-        //     xrRigPositionIndex += 1;
+        float targetX;
 
         if (isForehandSide)
         {
-            buttonOffset = new Vector3(buttonDistance, 0, 0);
+            targetX = courtCenter.transform.position.x + 3;
         }
         else
         {
-            buttonOffset = new Vector3(buttonDistance * -1, 0, 0);
+            targetX = courtCenter.transform.position.x - 3;
         }
 
-        Debug.Log("Redirect currentIndex: " + currentIndex);
+        // NEW ALGORITHM
+        target.transform.position = new Vector3(targetX, target.transform.position.y, target.transform.position.z); // move target
+        StartCoroutine(MoveScene());
 
-        Helper.MovePlayer(xrRig, target, TargetPositions.positionsArray[positionIndexes[currentIndex]]);
-
-        // target.transform.position = button.transform.position + new Vector3(0, 0, 1); // set target to where button was
-
-        button.transform.position = xrRig.transform.position + buttonOffset; // move button
         isForehandSide = !isForehandSide; // alternate between forehand and backhand
+    }
 
-        if (currentIndex + 1 >= positionIndexes.Length)
-            currentIndex = 0;
-        else
-            currentIndex += 1;
+    private IEnumerator MoveScene()
+    {
+        if (isForehandSide)
+            sceneMoveBy *= -1;
+
+        float currentDistance = GetDistanceToTarget();
+
+        WaitForSeconds wait = new WaitForSeconds(1);
+
+        while (Mathf.Abs(currentDistance) > distanceThreshold)
+        {
+            yield return wait;
+            scene.transform.position = new Vector3(scene.transform.position.x + sceneMoveBy, scene.transform.position.y, scene.transform.position.z);
+            currentDistance = GetDistanceToTarget();
+        }
+    }
+
+    /**
+        Get the distance between the XRRig and the target
+    **/
+    private float GetDistanceToTarget()
+    {
+        return target.transform.position.x - xrRig.transform.position.x;
     }
 }

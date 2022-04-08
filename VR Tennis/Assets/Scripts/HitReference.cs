@@ -31,10 +31,11 @@ public class HitReference : MonoBehaviour
     {
         Vector3 hitReference = gameController.transform.position;
         Debug.Log("HitReference: Setting reference " + hitReference);
+        Helper.SetHitPoint(hitReference);
         Vector3 xrRigCurrentPosition = xrRig.transform.position;
         Vector3 xrRigPosition = new Vector3(hitReference.x, xrRigCurrentPosition.y, hitReference.z) + new Vector3(0, 0, -1.727f);
         xrRig.transform.position = xrRigPosition;
         button.transform.position = xrRigPosition + new Vector3(-1, 0, 0);
-        target.transform.position = new Vector3(xrRigPosition.x, target.transform.position.y, xrRigPosition.z);
+        target.transform.position = new Vector3(xrRigPosition.x, target.transform.position.y, hitReference.z);
     }
 }
