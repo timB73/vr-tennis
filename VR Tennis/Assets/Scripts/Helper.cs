@@ -5,12 +5,18 @@ using UnityEngine;
 public class Helper
 {
 
-    public static Vector3 hitPoint;
+    private static Vector3 hitPoint;
 
     public static void SetHitPoint(Vector3 _hitPoint)
     {
         hitPoint = _hitPoint;
     }
+
+    public static Vector3 GetHitPoint()
+    {
+        return hitPoint;
+    }
+
     public static GameObject GetChildWithName(GameObject obj, string name)
     {
         Transform trans = obj.transform;

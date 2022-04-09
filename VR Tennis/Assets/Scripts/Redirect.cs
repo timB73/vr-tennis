@@ -25,7 +25,10 @@ public class Redirect : MonoBehaviour
     void Update()
     {
         float distance = GetDistanceToTarget();
-        Debug.Log("Distance to target: " + distance);
+        // Debug.Log("Distance to target: " + distance);
+        Debug.Log("Target x pos: " + target.transform.position.x);
+        Vector3 hitPoint = Helper.GetHitPoint();
+        Debug.Log("Hit point: " + hitPoint + " x = " + hitPoint.x);
     }
 
     /**
@@ -60,10 +63,15 @@ public class Redirect : MonoBehaviour
 
         WaitForSeconds wait = new WaitForSeconds(1);
 
-        while (Mathf.Abs(currentDistance) > distanceThreshold)
+        Vector3 hitPoint = Helper.GetHitPoint();
+
+        // OR while target.transform.x !== hitPoint.x
+        while (Mathf.Abs(target.transform.position.x - hitPoint.x) > sceneMoveBy)
         {
             yield return wait;
             scene.transform.position = new Vector3(scene.transform.position.x + sceneMoveBy, scene.transform.position.y, scene.transform.position.z);
+            Vector3 newHitPoint = new Vector3(hitPoint.x + sceneMoveBy, hitPoint.y, hitPoint.z); // the hitpoint needs to move with the scene
+            Helper.SetHitPoint(newHitPoint);
             currentDistance = GetDistanceToTarget();
         }
     }
