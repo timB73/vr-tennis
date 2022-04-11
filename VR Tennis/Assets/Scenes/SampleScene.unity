@@ -329,8 +329,9 @@ MonoBehaviour:
   button: {fileID: 1944277202}
   target: {fileID: 1450094769}
   courtCenter: {fileID: 1091737542}
+  ballMachine: {fileID: 1018780856}
+  gameController: {fileID: 1728657555}
   distanceThreshold: 0.33
-  sceneMoveBy: 0.5
 --- !u!114 &68972900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1092,7 +1093,6 @@ GameObject:
   - component: {fileID: 1018780859}
   - component: {fileID: 1018780858}
   - component: {fileID: 1018780857}
-  - component: {fileID: 1018780862}
   m_Layer: 0
   m_Name: Ball Machine
   m_TagString: Untagged
@@ -1193,18 +1193,6 @@ Transform:
   m_Father: {fileID: 1088438548}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!114 &1018780862
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1018780856}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 853351700935b3644bfd89c113d13134, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1088438547
 GameObject:
   m_ObjectHideFlags: 0
@@ -1309,7 +1297,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1450094769}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.544, y: 0.648, z: -4.4819956}
+  m_LocalPosition: {x: 0.5910925, y: 0.648, z: -4.59}
   m_LocalScale: {x: 0.52536213, y: 0.01, z: 0.6600629}
   m_ConstrainProportionsScale: 0
   m_Children: []

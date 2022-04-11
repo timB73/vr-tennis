@@ -117,7 +117,7 @@ public class Racket2 : MonoBehaviour
             Debug.Log("Spin: " + spinVectorWorld + ":" + spinVector + "!" + ball.angularVelocity);
             Vector3 localOutgoingVelocity = new Vector3(-localIncomingVelocity.x, localIncomingVelocity.y, localIncomingVelocity.z);
             Vector3 outgoingVelocity = transform.TransformVector(localOutgoingVelocity) + velocity;
-            Debug.Log("Ball collided!" + velocity + ":" + incomingVelocity + ":" + localIncomingVelocity + "!" + localOutgoingVelocity + "#" + outgoingVelocity);
+            // Debug.Log("Ball collided!" + velocity + ":" + incomingVelocity + ":" + localIncomingVelocity + "!" + localOutgoingVelocity + "#" + outgoingVelocity);
 
             outgoingVelocity.z *= racketZSpring;
             outgoingVelocity.y *= racketYSpring;

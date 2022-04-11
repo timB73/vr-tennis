@@ -18,7 +18,6 @@ public class BallMachineTarget : MonoBehaviour
 
     void OnTriggerEnter(Collider collider)
     {
-        Debug.Log("Target collision: " + collider.gameObject.tag);
         if (collider.gameObject.tag.Contains("Ball"))
         {
             Rigidbody rb = collider.gameObject.GetComponent<Rigidbody>();
