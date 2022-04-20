@@ -75,7 +75,7 @@ public class BallShooter : MonoBehaviour
 
         // Projectile equations to calculate initial velocity
         float Vxz = Sxz / time; // Vx = x / t
-        float Vy = Sy / time + 0.5f * Mathf.Abs(Physics.gravity.y) * time; // Vy0 = y/t + 1/2 * g * t
+        float Vy = Sy / time - 0.5f * Physics.gravity.y * time; // Vy0 = y/t - 1/2 * a * t
 
         Vector3 result = distanceXZ.normalized;
         result *= Vxz;
@@ -87,7 +87,6 @@ public class BallShooter : MonoBehaviour
     public void Shoot()
     {
         Vector3 velocity = CalculateVelocity(aimTarget.position, transform.position, 1.5f);
-        transform.rotation = Quaternion.LookRotation(velocity);
 
         Rigidbody spawnBall = Instantiate(ball, transform.position, transform.rotation);
         spawnBall.tag = "Shoot Ball";

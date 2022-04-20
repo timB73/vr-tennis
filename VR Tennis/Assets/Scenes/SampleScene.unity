@@ -1824,7 +1824,7 @@ ConfigurableJoint:
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
-  m_YMotion: 2
+  m_YMotion: 1
   m_ZMotion: 0
   m_AngularXMotion: 0
   m_AngularYMotion: 0
@@ -1833,7 +1833,7 @@ ConfigurableJoint:
     spring: 0
     damper: 0
   m_LinearLimit:
-    limit: 0.001
+    limit: 0.015
     bounciness: 0
     contactDistance: 0
   m_AngularXLimitSpring:

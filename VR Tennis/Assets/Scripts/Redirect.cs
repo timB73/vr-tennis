@@ -19,7 +19,6 @@ public class Redirect : MonoBehaviour
     private UnityEngine.XR.InputDevice headset;
 
     private bool isForehandSide = true;
-    private float distanceToMove = 0;
 
     private float distanceSceneMustMove;
 
@@ -57,7 +56,6 @@ public class Redirect : MonoBehaviour
 
         // NEW ALGORITHM
         target.transform.position = new Vector3(targetX, target.transform.position.y, target.transform.position.z); // move target
-        distanceToMove = GetDistanceToMove();
         Vector3 hitPoint = Helper.GetHitPoint();
         distanceSceneMustMove = Mathf.Abs(target.transform.position.x - hitPoint.x);
         // StartCoroutine(MoveScene());
