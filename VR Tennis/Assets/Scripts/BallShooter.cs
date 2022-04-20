@@ -84,6 +84,9 @@ public class BallShooter : MonoBehaviour
         return result;
     }
 
+    /**
+        Shoots a single ball to the target
+    **/
     public void Shoot()
     {
         Vector3 velocity = CalculateVelocity(aimTarget.position, transform.position, 1.5f);

@@ -47,7 +47,7 @@ public class HitReference : MonoBehaviour
         Vector3 xrRigPosition = new Vector3(hitReference.x, xrRigCurrentPosition.y, hitReference.z) + new Vector3(0, 0, -1.727f); // set just in front of the hit target
         xrRig.transform.position = xrRigPosition;
         button.transform.position = xrRigPosition + new Vector3(-buttonDistance, 0, 0); // start on forehand side
-        target.transform.position = new Vector3(hitReference.x, target.transform.position.y, hitReference.z + 2.5f);
+        target.transform.position = new Vector3(hitReference.x, target.transform.position.y, hitReference.z + Helper.TARGET_DISTANCE_FROM_HIT_POINT);
 
     }
 }

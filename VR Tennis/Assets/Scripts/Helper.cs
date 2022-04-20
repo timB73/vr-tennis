@@ -5,6 +5,8 @@ using UnityEngine;
 public class Helper
 {
 
+    public static readonly float TARGET_DISTANCE_FROM_HIT_POINT = 2.5f;
+
     private static Vector3 hitPoint;
 
     public static void SetHitPoint(Vector3 _hitPoint)
