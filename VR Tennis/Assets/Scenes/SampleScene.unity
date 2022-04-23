@@ -323,7 +323,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa6c35a1902a0594c902b8f64b8deb82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonDistance: 3
+  buttonDistance: 1.5
   xrRig: {fileID: 1725982592}
   scene: {fileID: 1088438547}
   button: {fileID: 1944277202}
@@ -331,7 +331,6 @@ MonoBehaviour:
   courtCenter: {fileID: 1091737542}
   ballMachine: {fileID: 1018780856}
   gameController: {fileID: 1728657555}
-  distanceThreshold: 0.33
 --- !u!114 &68972900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -791,7 +790,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90024a986c0b74d9c977003627907064, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runBallMachine: 1
+  runBallMachine: 0
   ball: {fileID: 223974232}
   aimTarget: {fileID: 1450094770}
 --- !u!65 &1018780858

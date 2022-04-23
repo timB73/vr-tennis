@@ -13,11 +13,13 @@ public class HitReference : MonoBehaviour
     [SerializeField] private GameObject button;
 
     private float buttonDistance;
+    private bool isForehandSide;
 
     void Start()
     {
         Redirect redirect = GameObject.Find("Teleport").GetComponent<Redirect>();
         buttonDistance = redirect.buttonDistance;
+        isForehandSide = redirect.isForehandSide;
         Debug.Log("Set button distance: " + buttonDistance);
     }
 
@@ -44,10 +46,21 @@ public class HitReference : MonoBehaviour
         Debug.Log("HitReference: Setting reference " + hitReference);
         Helper.SetHitPoint(hitReference);
         Vector3 xrRigCurrentPosition = xrRig.transform.position;
+
+        float targetZ = hitReference.z + Helper.TARGET_DISTANCE_FROM_HIT_POINT;
+
         Vector3 xrRigPosition = new Vector3(hitReference.x, xrRigCurrentPosition.y, hitReference.z) + new Vector3(0, 0, -1.727f); // set just in front of the hit target
         xrRig.transform.position = xrRigPosition;
-        button.transform.position = xrRigPosition + new Vector3(-buttonDistance, 0, 0); // start on forehand side
-        target.transform.position = new Vector3(hitReference.x, target.transform.position.y, hitReference.z + Helper.TARGET_DISTANCE_FROM_HIT_POINT);
+
+        float buttonX = buttonDistance;
+
+        if (isForehandSide)
+        {
+            buttonX = -buttonDistance;
+        }
+
+        button.transform.position = xrRigPosition + new Vector3(buttonX, 0, 0);
+        target.transform.position = new Vector3(hitReference.x, target.transform.position.y, targetZ);
 
     }
 }

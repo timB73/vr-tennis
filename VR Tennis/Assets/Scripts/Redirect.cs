@@ -13,13 +13,13 @@ public class Redirect : MonoBehaviour
     [SerializeField] private GameObject ballMachine; // so we can work out the angle the ball is coming from
     [SerializeField] private GameObject gameController;
 
-    private bool isForehandSide = true;
+    public bool isForehandSide = true;
 
     private float distanceSceneMustMove;
 
     void Start()
     {
-        button.transform.position = xrRig.transform.position + new Vector3(buttonDistance * -1, 0, 0);
+        button.transform.position = xrRig.transform.position + new Vector3(buttonDistance, 0, 0);
     }
 
     void Update()
@@ -59,9 +59,22 @@ public class Redirect : MonoBehaviour
             distanceSceneMustMove += offset;
         }
 
+        float newSceneXPosition = scene.transform.position.x;
+        float newHitPointX = hitPoint.x;
+        if (isForehandSide)
+        {
+            newSceneXPosition -= distanceSceneMustMove;
+            newHitPointX -= distanceSceneMustMove;
+        }
+        else
+        {
+            newSceneXPosition += distanceSceneMustMove;
+            newHitPointX += distanceSceneMustMove;
+        }
+
         // Try moving all at once
-        scene.transform.position = new Vector3(scene.transform.position.x - distanceSceneMustMove, scene.transform.position.y, scene.transform.position.z);
-        Vector3 newHitPoint = new Vector3(hitPoint.x - distanceSceneMustMove, hitPoint.y, hitPoint.z); // the hitpoint needs to move with the scene
+        scene.transform.position = new Vector3(newSceneXPosition, scene.transform.position.y, scene.transform.position.z);
+        Vector3 newHitPoint = new Vector3(newHitPointX, hitPoint.y, hitPoint.z); // the hitpoint needs to move with the scene
         Helper.SetHitPoint(newHitPoint);
 
         // isForehandSide = !isForehandSide; // alternate between forehand and backhand

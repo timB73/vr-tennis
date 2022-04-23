@@ -46,16 +46,32 @@ public class BallShooter : MonoBehaviour
 
     public void ShootWithDelay(int seconds)
     {
-        StartCoroutine(ShootWithDelayCoroutine(seconds));
+        int nTimes = 10;
+        int secondsBetweenShots = 3;
+        StartCoroutine(ShootWithDelayCoroutine(seconds, nTimes, secondsBetweenShots));
     }
 
-    private IEnumerator ShootWithDelayCoroutine(int seconds)
+    private IEnumerator ShootWithDelayCoroutine(int seconds, int nTimes = 1, int secondsBetweenShots = 0)
     {
+        int counter = 0;
         WaitForSeconds wait = new WaitForSeconds(seconds);
 
         yield return wait;
 
-        Shoot();
+
+        WaitForSeconds betweenWait = new WaitForSeconds(secondsBetweenShots);
+
+        while (counter < nTimes)
+        {
+            Shoot();
+
+            if (secondsBetweenShots > 0)
+            {
+                yield return betweenWait;
+            }
+
+            counter++;
+        }
     }
 
     /**
