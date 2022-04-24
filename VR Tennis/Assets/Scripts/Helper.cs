@@ -9,6 +9,7 @@ public class Helper
 
     private static Vector3 hitPoint;
 
+    /** Set the hit point position vector so it can be accessed from different classes **/
     public static void SetHitPoint(Vector3 _hitPoint)
     {
         hitPoint = _hitPoint;
@@ -33,12 +34,7 @@ public class Helper
         }
     }
 
-    public static void MovePlayer(GameObject xrRig, GameObject target, Vector3 newPosition)
-    {
-        // target.transform.position = newPosition;
-        xrRig.transform.position = newPosition;
-    }
-
+    /** For testing misalignment based on headset position **/
     public static UnityEngine.XR.InputDevice GetHeadset()
     {
         var headMounts = new List<UnityEngine.XR.InputDevice>();

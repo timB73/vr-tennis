@@ -11,7 +11,6 @@ public class Redirect : MonoBehaviour
     [SerializeField] private GameObject target;
     [SerializeField] private GameObject courtCenter;
     [SerializeField] private GameObject ballMachine; // so we can work out the angle the ball is coming from
-    [SerializeField] private GameObject gameController;
 
     public bool isForehandSide = true;
 
@@ -30,12 +29,13 @@ public class Redirect : MonoBehaviour
     }
 
     /**
-        Called when the button is pressed
+        Called when the button is pressed - see Push component in Unity editor (uses UnityEvents)
     **/
-    public void MovePlayer()
+    public void MoveScene()
     {
         float targetX; // new x position of the target
 
+        // the new x position is set to the far left (backhand) or right (forehand) side of the court
         if (isForehandSide)
         {
             targetX = courtCenter.transform.position.x + 3;
@@ -48,17 +48,19 @@ public class Redirect : MonoBehaviour
         // NEW ALGORITHM
         target.transform.position = new Vector3(targetX, target.transform.position.y, target.transform.position.z); // move target
         Vector3 hitPoint = Helper.GetHitPoint();
-        distanceSceneMustMove = Mathf.Abs(target.transform.position.x - hitPoint.x);
+        distanceSceneMustMove = Mathf.Abs(target.transform.position.x - hitPoint.x); // get the difference the target has moved to determine the new position of the scene
 
         if (target.transform.position.x != ballMachine.transform.position.x)
         {
-            // ball is coming from an angle
+            // ball is coming from an angle, thus an additional offset needs to be added
             float angle = GetAngle();
             float offset = Helper.TARGET_DISTANCE_FROM_HIT_POINT * Mathf.Tan(angle * Mathf.Deg2Rad);
             Debug.Log("Additional offset: " + offset + ", angle = " + angle);
             distanceSceneMustMove += offset;
         }
 
+        // Set the new scene position based on forehand (-ve - left side) or backhand (+ve - right side)
+        // note the hit reference needs to be adjusted by the same amount so that it can work again
         float newSceneXPosition = scene.transform.position.x;
         float newHitPointX = hitPoint.x;
         if (isForehandSide)
@@ -72,30 +74,10 @@ public class Redirect : MonoBehaviour
             newHitPointX += distanceSceneMustMove;
         }
 
-        // Try moving all at once
+        // Move scene all at once
         scene.transform.position = new Vector3(newSceneXPosition, scene.transform.position.y, scene.transform.position.z);
         Vector3 newHitPoint = new Vector3(newHitPointX, hitPoint.y, hitPoint.z); // the hitpoint needs to move with the scene
         Helper.SetHitPoint(newHitPoint);
-
-        // isForehandSide = !isForehandSide; // alternate between forehand and backhand
-    }
-
-    /**
-        Get the distance between the XRRig and the target
-    **/
-    private float GetDistanceToTarget()
-    {
-        return target.transform.position.x - xrRig.transform.position.x;
-    }
-
-    /**
-        Get the distance between the target and the hit point
-    **/
-    private float GetDistanceToMove()
-    {
-        float dist = Mathf.Abs(target.transform.position.x - Helper.GetHitPoint().x) + (Mathf.Abs(target.transform.position.x - ballMachine.transform.position.x) / 3);
-        Debug.Log("Distance to move: " + dist);
-        return dist;
     }
 
     private float GetAngle()

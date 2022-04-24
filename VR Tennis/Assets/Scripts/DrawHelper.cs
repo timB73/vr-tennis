@@ -2,12 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+Helper class for drawing lines - used heavily in debugging racket physics
+**/
 public class DrawHelper
 {
     private GameObject gameObject;
 
     private LineRenderer lr;
 
+    /** Requires a a game object to attach the line renderer to **/
     public DrawHelper(GameObject gameObject)
     {
         this.gameObject = gameObject;
@@ -22,7 +26,7 @@ public class DrawHelper
         {
             lr = gameObject.AddComponent<LineRenderer>();
         }
-        lr.startWidth = 0.01f;
+        lr.startWidth = 0.01f; // straight line by setting start and end widths to the same value
         lr.endWidth = 0.01f;
 
         // lr.material = new Material(Shader.Find("Sprites/Default"));

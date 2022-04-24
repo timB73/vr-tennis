@@ -17,6 +17,7 @@ public class HitReference : MonoBehaviour
 
     void Start()
     {
+        // Get whether the system is configured for forehand or backhand & the button distance from Redirect component
         Redirect redirect = GameObject.Find("Teleport").GetComponent<Redirect>();
         buttonDistance = redirect.buttonDistance;
         isForehandSide = redirect.isForehandSide;
@@ -47,11 +48,10 @@ public class HitReference : MonoBehaviour
         Helper.SetHitPoint(hitReference);
         Vector3 xrRigCurrentPosition = xrRig.transform.position;
 
-        float targetZ = hitReference.z + Helper.TARGET_DISTANCE_FROM_HIT_POINT;
-
         Vector3 xrRigPosition = new Vector3(hitReference.x, xrRigCurrentPosition.y, hitReference.z) + new Vector3(0, 0, -1.727f); // set just in front of the hit target
         xrRig.transform.position = xrRigPosition;
 
+        // if forehand, the button needs to be on the left (negative x), so they move back to hit the target from the left side (assumes right handed player)
         float buttonX = buttonDistance;
 
         if (isForehandSide)
@@ -59,8 +59,10 @@ public class HitReference : MonoBehaviour
             buttonX = -buttonDistance;
         }
 
-        button.transform.position = xrRigPosition + new Vector3(buttonX, 0, 0);
-        target.transform.position = new Vector3(hitReference.x, target.transform.position.y, targetZ);
+        float targetZ = hitReference.z + Helper.TARGET_DISTANCE_FROM_HIT_POINT; // should be in front of hit point such that ball bounces and contact point is roughly where the hit reference is
+
+        button.transform.position = xrRigPosition + new Vector3(buttonX, 0, 0); // set button new position
+        target.transform.position = new Vector3(hitReference.x, target.transform.position.y, targetZ); // set the new target position to in front of the hit point
 
     }
 }

@@ -331,6 +331,7 @@ MonoBehaviour:
   courtCenter: {fileID: 1091737542}
   ballMachine: {fileID: 1018780856}
   gameController: {fileID: 1728657555}
+  isForehandSide: 1
 --- !u!114 &68972900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1616,7 +1617,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 68972899}
         m_TargetAssemblyTypeName: Redirect, Assembly-CSharp
-        m_MethodName: MovePlayer
+        m_MethodName: MoveScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
