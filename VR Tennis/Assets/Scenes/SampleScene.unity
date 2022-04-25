@@ -323,7 +323,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa6c35a1902a0594c902b8f64b8deb82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonDistance: 1.5
+  buttonDistance: 2.8
   xrRig: {fileID: 1725982592}
   scene: {fileID: 1088438547}
   button: {fileID: 1944277202}
