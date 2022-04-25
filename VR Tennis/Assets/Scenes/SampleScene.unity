@@ -290,7 +290,7 @@ GameObject:
   - component: {fileID: 68972899}
   - component: {fileID: 68972900}
   m_Layer: 0
-  m_Name: Teleport
+  m_Name: Misalignment
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -330,7 +330,6 @@ MonoBehaviour:
   target: {fileID: 1450094769}
   courtCenter: {fileID: 1091737542}
   ballMachine: {fileID: 1018780856}
-  gameController: {fileID: 1728657555}
   isForehandSide: 1
 --- !u!114 &68972900
 MonoBehaviour:

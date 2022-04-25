@@ -18,7 +18,7 @@ public class HitReference : MonoBehaviour
     void Start()
     {
         // Get whether the system is configured for forehand or backhand & the button distance from Redirect component
-        Redirect redirect = GameObject.Find("Teleport").GetComponent<Redirect>();
+        Redirect redirect = GetComponent<Redirect>();
         buttonDistance = redirect.buttonDistance;
         isForehandSide = redirect.isForehandSide;
         Debug.Log("Set button distance: " + buttonDistance);
