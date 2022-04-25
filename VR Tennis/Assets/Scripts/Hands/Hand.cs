@@ -16,6 +16,8 @@ public class Hand : MonoBehaviour
     private float gripTarget;
     private float gripCurrent;
     private float triggerCurrent;
+
+    // These values correspond to the animation controller mask layers (see LeftHand animation controller)
     private string animatorGripParam = "Grip";
     private string animatorTriggerParam = "Trigger";
 
